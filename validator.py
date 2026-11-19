@@ -6,7 +6,18 @@ def validate(values):
     # TODO: APP_PORT must be an integer in 1024..65535.
     # TODO: DEBUG must be false, DB_HOST and DB_PASSWORD must be nonempty.
     # Return useful errors naming keys, not secret values.
-    raise NotImplementedError("Complete the configuration contract")
+    if(values['APP_PORT'].isdigit() == False):
+        errors.append("APP_PORT must be an integer")
+        if(int(values['APP_PORT']) < 1024 or int(values['APP_PORT']) > 65535):
+            errors.append("APP_PORT must be in 1024..65535")
+    if(values['DEBUG'] != "false"):
+        errors.append("DEBUG must be false")
+    if(values['DB_HOST'] == ""):
+        errors.append("DB_HOST must be nonempty")
+    if(values['DB_PASSWORD'] == ""):
+        errors.append("DB_PASSWORD must be nonempty")
+    return errors
+    
 
 def load(path):
     values = {}
