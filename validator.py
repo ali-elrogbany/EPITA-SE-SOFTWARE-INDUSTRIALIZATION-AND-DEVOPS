@@ -17,6 +17,12 @@ def validate(values):
         errors.append("DB_HOST must be nonempty")
     if(values['DB_PASSWORD'] == ""):
         errors.append("DB_PASSWORD must be nonempty")
+
+    for key in values:
+        if key not in ["APP_PORT", "DEBUG", "DB_HOST", "DB_PASSWORD"]:
+            errors.append(f"Unknown key: {key}")
+        if key != key.upper():
+            errors.append(f"Key {key} must be uppercase")
     return errors
     
 
