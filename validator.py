@@ -8,8 +8,9 @@ def validate(values):
     # Return useful errors naming keys, not secret values.
     if(values['APP_PORT'].isdigit() == False):
         errors.append("APP_PORT must be an integer")
-        if(int(values['APP_PORT']) < 1024 or int(values['APP_PORT']) > 65535):
-            errors.append("APP_PORT must be in 1024..65535")
+        errors.append("APP_PORT must be in 1024..65535")
+    if(values['APP_PORT'].isdigit() and (int(values['APP_PORT']) < 1024 or int(values['APP_PORT']) > 65535)):
+        errors.append("APP_PORT must be in 1024..65535")
     if(values['DEBUG'] != "false"):
         errors.append("DEBUG must be false")
     if(values['DB_HOST'] == ""):
